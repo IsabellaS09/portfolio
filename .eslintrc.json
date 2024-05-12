@@ -1,0 +1,234 @@
+{
+  "root": true,
+  "plugins": [
+    "@dword-design/import-alias",
+    "@typescript-eslint",
+    "import",
+    "jam3",
+    "jsx-a11y",
+    "prettier",
+    "react-hooks",
+    "react",
+    "testing-library"
+  ],
+  "env": {
+    "node": true,
+    "shared-node-browser": true
+  },
+  "globals": {
+    "nodejs": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "curly": [
+      "error",
+      "all"
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "react/jsx-curly-brace-presence": [
+      "error",
+      {
+        "props": "never",
+        "children": "never"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.jsx",
+        "*.tsx"
+      ],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      }
+    },
+    {
+      "files": [
+        "*.js",
+        "*.cjs",
+        "*.node"
+      ],
+      "parserOptions": {
+        "sourceType": "script"
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.jsx",
+        "**/__mocks__/**/*.[jt]s?(x)",
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "standard",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@dword-design/import-alias/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:prettier/recommended"
+      ],
+      "env": {
+        "browser": true
+      },
+      "globals": {
+        "JSX": true,
+        "React": true,
+        "Image": "off",
+        "NodeJS": true,
+        "Option": "off",
+        "Document": false,
+        "MouseEvent": false
+      },
+      "settings": {
+        "import/resolver": {
+          "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
+        },
+        "react": {
+          "version": "detect"
+        }
+      },
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "files": [
+          "*.ts",
+          "*.tsx"
+        ],
+        "sourceType": "module"
+      },
+      "rules": {
+        "@dword-design/import-alias/prefer-alias": [
+          "error",
+          {
+            "alias": {
+              "@": "./"
+            }
+          }
+        ],
+        "@typescript-eslint/consistent-type-imports": [
+          "warn",
+          {
+            "fixStyle": "inline-type-imports"
+          }
+        ],
+        "@typescript-eslint/no-import-type-side-effects": "error",
+        "@typescript-eslint/prefer-enum-initializers": "warn",
+        "import/newline-after-import": [
+          "warn",
+          {
+            "count": 1,
+            "considerComments": true
+          }
+        ],
+        "import/order": [
+          "warn",
+          {
+            "groups": [
+              "type",
+              "builtin",
+              "external",
+              [
+                "internal",
+                "parent",
+                "sibling",
+                "index"
+              ],
+              "object",
+              "unknown"
+            ],
+            "pathGroups": [
+              {
+                "pattern": "@/*",
+                "group": "internal"
+              },
+              {
+                "pattern": "@/**/*\\.css",
+                "patternOptions": { "matchBase": true },
+                "group": "unknown",
+                "position": "after"
+              }
+            ],
+            "distinctGroup": false,
+            "newlines-between": "always",
+            "warnOnUnassignedImports": true
+          }
+        ],
+        "jam3/no-sanitizer-with-danger": [
+          "error",
+          {
+            "wrapperName": [
+              "sanitize"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "**/__mocks__/**/*.[jt]s?(x)",
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "env": {
+        "jest": true
+      },
+      "extends": [
+        "plugin:testing-library/react"
+      ]
+    },
+    {
+      "files": [
+        "*.config.js",
+        "server.js"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "standard",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "dot-notation": "off",
+        "no-console": [
+          "warn",
+          {
+            "allow": [
+              "warn",
+              "error",
+              "info",
+              "log"
+            ]
+          }
+        ],
+        "no-unused-vars": [
+          "warn",
+          {
+            "vars": "local",
+            "destructuredArrayIgnorePattern": ".*",
+            "ignoreRestSiblings": true,
+            "args": "after-used"
+          }
+        ],
+        "no-empty": "off",
+        "no-var": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
+}
