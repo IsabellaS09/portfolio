@@ -15,10 +15,8 @@ const SkillCategoryLegend: FC = () => {
   const displayTech = useSelector(selectDisplay);
 
   return (
-    <div className="p-4 border-solid border-2 border-slate-400">
-      <p className="font-bold text-lg mb-1 md:display-none">
-        Skill Category Legend
-      </p>
+    <div className="p-4 border-solid border-2 border-slate-400 hidden md:block">
+      <p className="font-bold text-lg mb-1">Skill Category Legend</p>
       <div className="flex flex-col gap-2">
         <div className="flex flex-row gap-2">
           <ToolingBubble techName="Tooling" />

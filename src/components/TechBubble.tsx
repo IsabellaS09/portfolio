@@ -183,6 +183,7 @@ const TechBubble: FC<TechBubbleProps> = ({ techType, techName }) => {
               initial="initial"
               animate="target"
               exit="initial"
+              className="whitespace-nowrap"
             >
               {techName?.split("").map((letter, i) => {
                 return (
