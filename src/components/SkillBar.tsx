@@ -27,7 +27,7 @@ const SkillBar: FC<SkillBarProps> = ({
   backend,
 }) => {
   return (
-    <div className="flex flex-col gap-2 mt-1 items-start">
+    <div className="flex flex-col gap-0 md:gap-1 mt-1 items-start">
       <div>
         <strong>{title}</strong>
       </div>

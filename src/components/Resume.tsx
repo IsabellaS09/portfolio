@@ -50,7 +50,7 @@ const Resume: FC = () => {
             </h5>
           }
         />
-        <div className="mt-4 mx-4">
+        <div className="mt-4 md:mx-4">
           <div className="flex flex-col gap-8">
             <ResumeSection
               leftSide={
@@ -66,7 +66,7 @@ const Resume: FC = () => {
                 </div>
               }
               rightSide={
-                <>
+                <div className="flex flex-col gap-2 md:gap-4">
                   <SkillBar
                     title="TypeScript"
                     frontend={[FrontEnd.React]}
@@ -105,7 +105,7 @@ const Resume: FC = () => {
                       Libraries.jQuery,
                     ]}
                   />
-                </>
+                </div>
               }
             />
             <Divider />

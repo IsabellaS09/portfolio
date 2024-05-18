@@ -14,8 +14,8 @@ const SkillCategoryLegendToolbar: FC = () => {
   const dispatch = useDispatch();
   const displayTech = useSelector(selectDisplay);
   return (
-    <div className="sticky block md:hidden bottom-0 bg-neutral-950 w-screen p-4 flex flex-col gap-4">
-      <div className="flex flex-row justify-between">
+    <div className="sticky block md:hidden bottom-0 bg-neutral-950 w-screen flex py-4 flex-col gap-4">
+      <div className="flex flex-row justify-between mx-4">
         <p className="font-bold text-lg">Skill Category Legend</p>
         <div className="text-end mt-2">
           <button
@@ -29,7 +29,7 @@ const SkillCategoryLegendToolbar: FC = () => {
           <p className="text-xs mt-1">or click on individual bubbles</p>
         </div>
       </div>
-      <div className="flex flex-row gap-3 overflow-scroll">
+      <div className="flex flex-row gap-3 overflow-scroll px-4">
         <div className="flex flex-row gap-1.5">
           <ToolingBubble techName="Tooling" />
           <p className="whitespace-nowrap">Tooling</p>
