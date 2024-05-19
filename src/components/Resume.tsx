@@ -18,11 +18,14 @@ import ResumeSection from "./ResumeSection";
 import SkillBar from "./SkillBar";
 import SkillCategoryLegend from "./SkillCategoryLegend";
 import SkillCategoryLegendToolbar from "./SkillCategoryLegendToolbar";
+import { useBubbleAnimationProvider } from "@/store/BubbleAnimationProvider";
 
 const Resume: FC = () => {
+  const { inViewTriggerElement } = useBubbleAnimationProvider();
+
   return (
     <div id="resume" className="min-h-screen flex flex-col">
-      <div className="w-4/5 self-center">
+      <div className="w-4/5 self-center" id="inner-resume-container">
         <div className="flex justify-between items-center pt-8">
           <div>
             <h1>Ella</h1>
@@ -54,7 +57,7 @@ const Resume: FC = () => {
           <div className="flex flex-col gap-8">
             <ResumeSection
               leftSide={
-                <div>
+                <div ref={inViewTriggerElement}>
                   <div className="md:hidden">
                     <h4 className="text-2xl md:text-base">
                       <strong>Skill Overview</strong>

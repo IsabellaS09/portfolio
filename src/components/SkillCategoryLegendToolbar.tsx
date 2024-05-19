@@ -14,7 +14,7 @@ const SkillCategoryLegendToolbar: FC = () => {
   const dispatch = useDispatch();
   const displayTech = useSelector(selectDisplay);
   return (
-    <div className="sticky block md:hidden bottom-0 bg-neutral-950 w-screen flex py-4 flex-col gap-4">
+    <div className="sticky block md:hidden bottom-0 bg-neutral-950 w-screen flex py-4 flex-col gap-4 z-20">
       <div className="flex flex-row justify-between mx-4">
         <p className="font-bold text-lg">Skill Category Legend</p>
         <div className="text-end mt-2">
@@ -29,29 +29,29 @@ const SkillCategoryLegendToolbar: FC = () => {
           <p className="text-xs mt-1">or click on individual bubbles</p>
         </div>
       </div>
-      <div className="flex flex-row gap-3 overflow-scroll px-4">
+      <div className="flex flex-row gap-3 overflow-x-scroll px-4">
         <div className="flex flex-row gap-1.5">
-          <ToolingBubble techName="Tooling" />
+          <ToolingBubble techName="Tooling" noAnimatedEntry />
           <p className="whitespace-nowrap">Tooling</p>
         </div>
         <div className="flex flex-row gap-1.5">
-          <DataBubble techName="Data Querying" />
+          <DataBubble techName="Data Querying" noAnimatedEntry />
           <p className="whitespace-nowrap">Data Querying</p>
         </div>
         <div className="flex flex-row gap-1.5">
-          <BackendBubble techName="Backend" />
+          <BackendBubble techName="Backend" noAnimatedEntry />
           <p>Backend</p>
         </div>
         <div className="flex flex-row gap-1.5">
-          <FrontendBubble techName="Frontend" />
+          <FrontendBubble techName="Frontend" noAnimatedEntry />
           <p>Frontend</p>
         </div>
         <div className="flex flex-row gap-1.5">
-          <LibraryBubble techName="Library" />
+          <LibraryBubble techName="Library" noAnimatedEntry />
           <p>Library</p>
         </div>
         <div className="flex flex-row gap-1.5">
-          <TestingBubble techName="Testing" />
+          <TestingBubble techName="Testing" noAnimatedEntry />
           <p>Testing</p>
         </div>
       </div>

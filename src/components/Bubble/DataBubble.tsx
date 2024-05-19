@@ -4,8 +4,10 @@ import type { BubbleProps } from "@/interfaces/BubbleProps";
 import TechBubble from "./TechBubble";
 import { TechType } from "@/interfaces/Project";
 
-const DataBubble: FC<BubbleProps> = ({ techName }) => {
-  return <TechBubble techType={TechType.Data} techName={techName} />;
+const DataBubble: FC<BubbleProps> = ({ techName, noAnimatedEntry }) => {
+  return (
+    <TechBubble techType={TechType.Data} {...{ techName, noAnimatedEntry }} />
+  );
 };
 
 export default DataBubble;

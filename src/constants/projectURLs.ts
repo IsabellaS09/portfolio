@@ -1,14 +1,14 @@
 export const projectURLs = [
   {
     name: "The Amazing Race",
-    url: "amazingracetravelguide.com",
+    url: "https://amazingracetravelguide.com/",
   },
   {
     name: "Mardi Gras Parade Calendar",
-    url: "mardigrascalendar.com",
+    url: "https://www.mardigrascalendar.com/",
   },
   {
     name: "My Trips",
-    url: "misadventurer.me",
+    url: "https://www.misadventurer.me/",
   },
 ];

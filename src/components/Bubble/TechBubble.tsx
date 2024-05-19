@@ -1,11 +1,17 @@
 import type { BubbleProps } from "@/interfaces/BubbleProps";
 
-import { useEffect, useState, type FC } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useCallback, useEffect, useRef, useState, type FC } from "react";
+import {
+  AnimatePresence,
+  type Variants,
+  motion,
+  useAnimationControls,
+} from "framer-motion";
 import { useSelector } from "react-redux";
 
 import { type TechType, TechTypeToColor } from "@/interfaces/Project";
 import { selectDisplay } from "@/helpers/reducers";
+import { useBubbleAnimationProvider } from "@/store/BubbleAnimationProvider";
 
 interface TechBubbleProps extends BubbleProps {
   techType: TechType;
@@ -13,87 +19,85 @@ interface TechBubbleProps extends BubbleProps {
 
 const transitionTime = 1.5;
 
-const TechBubble: FC<TechBubbleProps> = ({ techType, techName }) => {
+// TODO: Reorganize this file
+const TechBubble: FC<TechBubbleProps> = ({
+  techType,
+  techName,
+  noAnimatedEntry,
+}) => {
+  const { triggerBubbleAnimation } = useBubbleAnimationProvider();
   const displayTech = useSelector(selectDisplay);
   const [showTech, setShowTech] = useState(false);
   const [showName, setShowName] = useState(showTech || displayTech);
+  const controls = useAnimationControls();
+  const currentElement = useRef<HTMLDivElement>(null);
+  const [width] = useState(window.innerWidth);
+  const resumeContainer = useRef(document.getElementById("resume"));
+  const firstStartingPosition = Math.random() > 0.5 ? "-100vw" : "100vw";
+  const [topDifference, setTopDifference] = useState(0);
+  const [leftDifference, setLeftDifference] = useState(0);
+  const initialScale = Math.random() * 3;
 
   useEffect(() => {
     setShowName(displayTech || showTech);
   }, [displayTech, showTech]);
 
-  // useEffect(() => {
-  //   if(!techName) return
-  //   if (showName) {
-  //     techName.split('').forEach((x, i) => {
-  //       setTimeout(() => {
-  //         setDisplayTechName((prevState) => {
-  //         const newState = prevState + x
-  //         return newState
-  //       })
-  //     }, transitionTime*1000/(techName.length)* i)
+  useEffect(() => {
+    if (triggerBubbleAnimation) {
+      controls.start("target");
+    }
+  }, [triggerBubbleAnimation]);
 
-  //     })
-  //   } else {
-  //     techName.split('').forEach((x, i) => {
-  //       setTimeout(() => {
-  //         setDisplayTechName((prevState) => {
-  //           prevState.split('').pop()
-  //         return newState
-  //       })
-  //     }, transitionTime*1000/(techName.length)* i)
+  useEffect(() => {
+    resumeContainer.current = document.getElementById("resume");
 
-  //     })
-  //   }
-  // }, [showName])
+    const resumeInnerContainer = document.getElementById(
+      "inner-resume-container",
+    );
+    if (resumeContainer.current && currentElement.current) {
+      const top =
+        currentElement.current.getBoundingClientRect().top -
+        resumeContainer.current.getBoundingClientRect().top;
+      setTopDifference(top * -1);
+    }
+    if (
+      resumeContainer.current &&
+      currentElement.current &&
+      resumeInnerContainer
+    ) {
+      const xPosition =
+        currentElement.current.getBoundingClientRect().left -
+        resumeContainer.current.getBoundingClientRect().left;
+      setLeftDifference(
+        Math.random() * Math.min(width, resumeInnerContainer.clientWidth) -
+          xPosition,
+      );
+    }
+  }, []);
 
-  // const [width] = useState(window.innerWidth);
-  // const node = useRef(document.getElementById("resume"));
-  // const isInView = useInView(node);
-  // const startingPosition = (Math.random() - 0.5) * width;
-
-  // useEffect(() => {
-  //   node.current = document.getElementById("resume");
-  //   document.getElementById("title");
-  // }, []);
-
-  // TODO: Need to revisit these variants
-  // const spring = {
-  //   gentle: {
-  //     type: `spring`,
-  //     mass: 1,
-  //     damping: 50,
-  //     stiffness: 100,
-  //     velocity: 2,
-  //     duration: 10
-  //   },
-  //   rough: {
-  //     type: `spring`,
-  //     mass: 50,
-  //     damping: 50,
-  //     stiffness: 1,
-  //     velocity: 2,
-  //     duration: 10
-  //   }
-  // }
-
-  // const container = {
-  //   initial: {
-  //     transform: `translateY(-1000px) translateX(${startingPosition}px)`,
-  //     opacity: 0,
-  //   },
-  //   expanded: {
-  //     transform: [
-  //       `translateY(0px) translateX(${startingPosition / 3}px)`,
-  //       `translateY(-300px) translateX(${startingPosition / 4}px)`,
-  //       `translateY(-100px) translateX(25px)`,
-  //       `none`,
-  //     ],
-  //     opacity: 1,
-  //     transition: { times: [0, 0.45, 0.85, 0.95, 1], duration: 10 },
-  //     delay: Math.random() * 3,
-  //   },
-  // };
+  const bubbleContainer = useCallback(() => {
+    return {
+      initial: {
+        translateX: firstStartingPosition,
+        translateY: `calc(${topDifference}px - (1.5rem * ${initialScale}))`,
+        scale: initialScale,
+        opacity: 0,
+      },
+      target: {
+        translateX: [leftDifference, 0],
+        translateY: [null, 0],
+        scale: [Math.random() * 3, 1],
+        opacity: [1, null],
+        transition: {
+          times: [0, 1],
+          duration: 3,
+          delay: Math.random() * 0.5,
+          type: "spring",
+          bounce: 0.7,
+        },
+      },
+    } as Variants;
+  }, [topDifference, leftDifference]);
 
   const container = {
     initial: {
@@ -148,10 +152,15 @@ const TechBubble: FC<TechBubbleProps> = ({ techType, techName }) => {
     },
   };
 
+  if (!topDifference) {
+    return <div ref={currentElement} className="h-6 w-6" />;
+  }
+
   // TODO: On a singluar click want a different animation smoother spring open, maybe on hover too
   return (
-    <div
-      className="flex flex-row gap-2"
+    <motion.div
+      ref={currentElement}
+      className="flex flex-row gap-2 z-10"
       aria-label={techName}
       role="button"
       tabIndex={0}
@@ -167,6 +176,9 @@ const TechBubble: FC<TechBubbleProps> = ({ techType, techName }) => {
           return !prevState;
         });
       }}
+      variants={noAnimatedEntry ? undefined : bubbleContainer()}
+      initial="initial"
+      animate={controls}
     >
       <motion.div
         variants={container}
@@ -201,7 +213,7 @@ const TechBubble: FC<TechBubbleProps> = ({ techType, techName }) => {
           )}
         </AnimatePresence>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
