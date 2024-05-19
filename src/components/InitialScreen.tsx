@@ -24,7 +24,7 @@ const InitialScreen: FC = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center relative">
+    <div className="h-dvh flex items-center justify-center relative">
       <div className="flex flex-col items-center">
         <h1 className="m-0" id="title">
           Visualizations of

@@ -24,7 +24,7 @@ const Resume: FC = () => {
   const { inViewTriggerElement } = useBubbleAnimationProvider();
 
   return (
-    <div id="resume" className="min-h-screen flex flex-col">
+    <div id="resume" className="min-h-dvh flex flex-col">
       <div className="w-4/5 self-center" id="inner-resume-container">
         <div className="flex justify-between items-center pt-8">
           <div>
