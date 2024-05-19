@@ -6,10 +6,10 @@ import type {
   Testing,
 } from "@/interfaces/Project";
 
-import BackendBubble from "./BackendBubble";
-import FrontendBubble from "./FrontendBubble";
-import LibraryBubble from "./LibraryBubble";
-import TestingBubble from "./TestingBubble";
+import BackendBubble from "./Bubble/BackendBubble";
+import FrontendBubble from "./Bubble/FrontendBubble";
+import LibraryBubble from "./Bubble/LibraryBubble";
+import TestingBubble from "./Bubble/TestingBubble";
 
 type SkillBarProps = {
   title: string;

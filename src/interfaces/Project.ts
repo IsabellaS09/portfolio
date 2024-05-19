@@ -100,4 +100,5 @@ export type Project = {
   data?: Data[];
   frontend?: FrontEnd[];
   tooling?: Tooling[];
+  githubLink?: string;
 };

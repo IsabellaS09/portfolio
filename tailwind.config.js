@@ -10,6 +10,7 @@ export default {
         aquamarine: "#80ffe8",
         "blue-crayola": "#3777ff",
         "midnight-green": "#1A535C",
+        vite: "#242424",
       },
     },
   },

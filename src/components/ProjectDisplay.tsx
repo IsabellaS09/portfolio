@@ -9,12 +9,13 @@ import type {
   Tooling,
 } from "@/interfaces/Project";
 
-import ToolingBubble from "./ToolingBubble";
-import DataBubble from "./DataBubble";
-import BackendBubble from "./BackendBubble";
-import FrontendBubble from "./FrontendBubble";
-import LibraryBubble from "./LibraryBubble";
-import TestingBubble from "./TestingBubble";
+import ToolingBubble from "./Bubble/ToolingBubble";
+import DataBubble from "./Bubble/DataBubble";
+import BackendBubble from "./Bubble/BackendBubble";
+import FrontendBubble from "./Bubble/FrontendBubble";
+import LibraryBubble from "./Bubble/LibraryBubble";
+import TestingBubble from "./Bubble/TestingBubble";
+import ExpandableDescription from "./ExpandableDescription";
 
 type ProjectDisplayProps = {
   project: Project;
@@ -69,7 +70,9 @@ const ProjectDisplay: FC<ProjectDisplayProps> = ({ project, description }) => {
             return <TestingBubble key={lang} techName={lang} />;
           })}
       </div>
-      <div className="mt-2">{description}</div>
+      <div className="mt-2">
+        <ExpandableDescription>{description}</ExpandableDescription>
+      </div>
     </div>
   );
 };

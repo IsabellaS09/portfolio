@@ -21,7 +21,7 @@ import SkillCategoryLegendToolbar from "./SkillCategoryLegendToolbar";
 
 const Resume: FC = () => {
   return (
-    <div id="resume" className="min-h-screen flex flex-col mb-4">
+    <div id="resume" className="min-h-screen flex flex-col">
       <div className="w-4/5 self-center">
         <div className="flex justify-between items-center pt-8">
           <div>
@@ -50,7 +50,7 @@ const Resume: FC = () => {
             </h5>
           }
         />
-        <div className="mt-4 md:mx-4">
+        <div className="mt-4 md:mx-4 mb-6">
           <div className="flex flex-col gap-8">
             <ResumeSection
               leftSide={

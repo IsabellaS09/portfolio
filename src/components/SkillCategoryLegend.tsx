@@ -3,12 +3,12 @@ import type { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectDisplay, toggleState } from "@/helpers/reducers";
-import BackendBubble from "./BackendBubble";
-import DataBubble from "./DataBubble";
-import FrontendBubble from "./FrontendBubble";
-import LibraryBubble from "./LibraryBubble";
-import TestingBubble from "./TestingBubble";
-import ToolingBubble from "./ToolingBubble";
+import BackendBubble from "./Bubble/BackendBubble";
+import DataBubble from "./Bubble/DataBubble";
+import FrontendBubble from "./Bubble/FrontendBubble";
+import LibraryBubble from "./Bubble/LibraryBubble";
+import TestingBubble from "./Bubble/TestingBubble";
+import ToolingBubble from "./Bubble/ToolingBubble";
 
 const SkillCategoryLegend: FC = () => {
   const dispatch = useDispatch();

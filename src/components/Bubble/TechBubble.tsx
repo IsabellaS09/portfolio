@@ -148,6 +148,7 @@ const TechBubble: FC<TechBubbleProps> = ({ techType, techName }) => {
     },
   };
 
+  // TODO: On a singluar click want a different animation smoother spring open, maybe on hover too
   return (
     <div
       className="flex flex-row gap-2"
