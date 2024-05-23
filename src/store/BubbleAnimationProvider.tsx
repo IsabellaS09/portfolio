@@ -29,6 +29,21 @@ export default function BubbleAnimationProvider({
   useEffect(() => {
     if (isInView) {
       setTriggerBubbleAnimation(true);
+      // TODO: This is kind of weird, try to rework
+      setTimeout(() => {
+        const htmlElem = document.getElementsByTagName("html").item(0);
+        const bodyElem = document.getElementsByTagName("body").item(0);
+        const rootElem = document.getElementById("root")
+        if(htmlElem) {
+          htmlElem.removeAttribute('style')
+        }
+        if(bodyElem) {
+          bodyElem.removeAttribute('style')
+        }
+        if(rootElem) {
+          rootElem.removeAttribute('style')
+        }
+      }, 50)
     }
   }, [isInView]);
 

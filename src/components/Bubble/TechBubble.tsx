@@ -79,7 +79,7 @@ const TechBubble: FC<TechBubbleProps> = ({
     return {
       initial: {
         translateX: firstStartingPosition,
-        translateY: `calc(${topDifference}px - (1.5rem * ${initialScale}))`,
+        translateY: `calc(${topDifference}px - calc(1.5rem * ${initialScale}))`,
         scale: initialScale,
         opacity: 0,
       },
@@ -90,7 +90,7 @@ const TechBubble: FC<TechBubbleProps> = ({
         opacity: [1, null],
         transition: {
           times: [0, 1],
-          duration: 3,
+          duration: 4,
           delay: Math.random() * 0.5,
           type: "spring",
           bounce: 0.7,
