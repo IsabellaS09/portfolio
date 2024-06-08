@@ -17,7 +17,7 @@ interface TechBubbleProps extends BubbleProps {
   techType: TechType;
 }
 
-const transitionTime = 1.5;
+const transitionTime = 1;
 
 // TODO: Reorganize this file
 const TechBubble: FC<TechBubbleProps> = ({
@@ -90,7 +90,7 @@ const TechBubble: FC<TechBubbleProps> = ({
         opacity: [1, null],
         transition: {
           times: [0, 1],
-          duration: 4,
+          duration: 2,
           delay: Math.random() * 0.5,
           type: "spring",
           bounce: 0.7,
@@ -181,14 +181,14 @@ const TechBubble: FC<TechBubbleProps> = ({
       animate={controls}
     >
       <motion.div
-        variants={container}
+        variants={noAnimatedEntry ? container : undefined}
         custom={showName}
         initial="initial"
         animate="target"
         className={`h-6 min-w-6 px-3 rounded-full ${TechTypeToColor(techType)}`}
       >
         <AnimatePresence>
-          {showName && (
+          {!noAnimatedEntry && showName && (
             <motion.div
               key={`tech${techName}`}
               variants={techNameContainer}

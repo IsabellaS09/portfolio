@@ -1,8 +1,5 @@
 import type { FC } from "react";
 
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {
   FrontEnd,
   Testing,
@@ -19,6 +16,7 @@ import SkillBar from "./SkillBar";
 import SkillCategoryLegend from "./SkillCategoryLegend";
 import SkillCategoryLegendToolbar from "./SkillCategoryLegendToolbar";
 import { useBubbleAnimationProvider } from "@/store/BubbleAnimationProvider";
+import Header from "./Header";
 
 const Resume: FC = () => {
   const { inViewTriggerElement } = useBubbleAnimationProvider();
@@ -26,23 +24,7 @@ const Resume: FC = () => {
   return (
     <div id="resume" className="min-h-dvh flex flex-col">
       <div className="w-4/5 self-center" id="inner-resume-container">
-        <div className="flex justify-between items-center pt-8">
-          <div>
-            <h1>Ella</h1>
-            <p>(she/her)</p>
-          </div>
-          <div>
-            <a
-              href="https://www.linkedin.com/in/isabella-seeman-b93b90a3/"
-              className="mr-4"
-            >
-              <FontAwesomeIcon icon={faGithub} size="2x" />
-            </a>
-            <a href="https://github.com/IsabellaS09">
-              <FontAwesomeIcon icon={faLinkedin} size="2x" />
-            </a>
-          </div>
-        </div>
+        <Header />
         <ResumeSection
           leftSide={<></>}
           rightSide={
@@ -71,9 +53,15 @@ const Resume: FC = () => {
               rightSide={
                 <div className="flex flex-col gap-2 md:gap-4">
                   <SkillBar
-                    title="TypeScript"
-                    frontend={[FrontEnd.React]}
+                    title="JavaScript / TypeScript"
+                    frontend={[
+                      FrontEnd.React,
+                      FrontEnd.ReactNative,
+                      FrontEnd.Angular,
+                      FrontEnd.AngularJS,
+                    ]}
                     testing={[Testing.Jest, Testing.Cypress]}
+                    backend={[Backend.NodeJS]}
                     libraries={[
                       Libraries.MUI,
                       Libraries.antd,
@@ -82,6 +70,7 @@ const Resume: FC = () => {
                       Libraries.GSAP,
                       Libraries.D3,
                       Libraries.Leaflet,
+                      Libraries.jQuery,
                     ]}
                   />
                   <SkillBar
@@ -92,20 +81,6 @@ const Resume: FC = () => {
                       Libraries.llamaIndex,
                       Libraries.OpenCV,
                       Libraries.Tesseract,
-                    ]}
-                  />
-                  <SkillBar
-                    title="JavaScript"
-                    frontend={[
-                      FrontEnd.ReactNative,
-                      FrontEnd.Angular,
-                      FrontEnd.AngularJS,
-                    ]}
-                    backend={[Backend.NodeJS]}
-                    libraries={[
-                      Libraries.D3,
-                      Libraries.Leaflet,
-                      Libraries.jQuery,
                     ]}
                   />
                 </div>

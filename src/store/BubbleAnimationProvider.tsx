@@ -33,17 +33,17 @@ export default function BubbleAnimationProvider({
       setTimeout(() => {
         const htmlElem = document.getElementsByTagName("html").item(0);
         const bodyElem = document.getElementsByTagName("body").item(0);
-        const rootElem = document.getElementById("root")
-        if(htmlElem) {
-          htmlElem.removeAttribute('style')
+        const rootElem = document.getElementById("root");
+        if (htmlElem) {
+          htmlElem.removeAttribute("style");
         }
-        if(bodyElem) {
-          bodyElem.removeAttribute('style')
+        if (bodyElem) {
+          bodyElem.removeAttribute("style");
         }
-        if(rootElem) {
-          rootElem.removeAttribute('style')
+        if (rootElem) {
+          rootElem.removeAttribute("style");
         }
-      }, 50)
+      }, 50);
     }
   }, [isInView]);
 

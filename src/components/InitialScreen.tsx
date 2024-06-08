@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 
 import { projectURLs } from "@/constants/projectURLs";
+import Header from "./Header";
 
 const InitialScreen: FC = () => {
   const [hoveredElement, setHoveredElement] = useState("");
@@ -24,43 +25,48 @@ const InitialScreen: FC = () => {
   };
 
   return (
-    <div className="h-dvh flex items-center justify-center relative">
-      <div className="flex flex-col items-center">
-        <h1 className="m-0" id="title">
-          Visualizations of
-        </h1>
-        <motion.div
-          className="flex flex-row gap-4"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          {projectURLs.map((project, index) => {
-            if (hoveredElement === project.url || !hoveredElement) {
-              return (
-                <motion.h1
-                  className="m-0"
-                  key={hoveredElement ? project.url : project.name}
-                  variants={listItem}
-                  onMouseEnter={() => {
-                    setHoveredElement(project.url);
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredElement("");
-                  }}
-                >
-                  <a href={project.url}>
-                    {project.url === hoveredElement
-                      ? project.name
-                      : String.fromCharCode(97 + 26 - 3 + index)}
-                  </a>
-                </motion.h1>
-              );
-            } else {
-              return <></>;
-            }
-          })}
-        </motion.div>
+    <div className="h-dvh relative">
+      <div className="absolute top-0 w-4/5 flex items-center mx-auto right-0 left-0">
+        <Header />
+      </div>
+      <div className="flex items-center justify-center h-full">
+        <div className="flex flex-col items-center">
+          <h1 className="m-0" id="title">
+            Visualizations of
+          </h1>
+          <motion.div
+            className="flex flex-row gap-4"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {projectURLs.map((project, index) => {
+              if (hoveredElement === project.url || !hoveredElement) {
+                return (
+                  <motion.h1
+                    className="m-0"
+                    key={hoveredElement ? project.url : project.name}
+                    variants={listItem}
+                    onMouseEnter={() => {
+                      setHoveredElement(project.url);
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredElement("");
+                    }}
+                  >
+                    <a href={project.url}>
+                      {project.url === hoveredElement
+                        ? project.name
+                        : String.fromCharCode(97 + 26 - 3 + index)}
+                    </a>
+                  </motion.h1>
+                );
+              } else {
+                return <></>;
+              }
+            })}
+          </motion.div>
+        </div>
       </div>
       <motion.div className="absolute bottom-8 flex flex-col items-center right-0 left-0">
         <h3>About Me</h3>
